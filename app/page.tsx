@@ -1,4 +1,3 @@
-import Image from "next/image";
 import CustomerDetailsForm from "./components/formcus"
 
 export default function Home() {

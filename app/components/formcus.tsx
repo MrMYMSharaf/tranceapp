@@ -14,8 +14,9 @@ interface FormData {
 
 interface Step {
   title: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
+
 
 const formatDate = (dateStr: string): string => {
   if (!dateStr) return '';
@@ -44,11 +45,11 @@ const getDaySuffix = (day: number): string => {
   }
 };
 
-const formatDateForInput = (dateStr: string): string => {
-  if (!dateStr) return '';
-  const date = new Date(dateStr);
-  return date.toISOString().split('T')[0];
-};
+// const formatDateForInput = (dateStr: string): string => {
+//   if (!dateStr) return '';
+//   const date = new Date(dateStr);
+//   return date.toISOString().split('T')[0];
+// };
 
 const CustomerDetailsForm = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -61,7 +62,7 @@ const CustomerDetailsForm = () => {
     legalOfficer: "",
   });
 
-  const [responseData, setResponseData] = useState<Record<string, any> | null>(null);
+  const [responseData, setResponseData] = useState<Record<string, string> | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -108,7 +109,8 @@ const CustomerDetailsForm = () => {
       } else {
         setErrorMessage(`Error: ${result.detail?.map((err: { msg: string }) => err.msg).join(", ")}`);
       }
-    } catch (error) {
+    } catch (_error) {
+      console.error("Error submitting form:", _error);
       setErrorMessage("Failed to submit the form. Please try again.");
     } finally {
       setIsLoading(false);
