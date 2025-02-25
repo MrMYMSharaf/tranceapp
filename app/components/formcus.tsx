@@ -96,7 +96,7 @@ const CustomerDetailsForm = () => {
     };
 
     try {
-      const response = await fetch("http://10.128.51.52:8000/translate", {
+      const response = await fetch("/api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formattedData),
