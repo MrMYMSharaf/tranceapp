@@ -1,0 +1,8 @@
+[[redirects]]
+  from = "/api/translate"
+  to = "http://10.128.51.52:8000/translate"
+  status = 200
+  force = true
+
+[functions]
+  timeout = 20
